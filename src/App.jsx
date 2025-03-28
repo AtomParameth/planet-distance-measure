@@ -3,6 +3,7 @@ import './App.css'
 import PlanetSelector from './components/PlanetSelector'
 import CompareButton from './components/CompareButton'
 import DistanceResult from './components/DistanceResult'
+import HelpDoc from './components/HelpDoc'
 import './assets/styles/PlanetSelector.css'
 import solarSystem from './assets/images/solarsystem.jpg'
 
@@ -11,6 +12,7 @@ function App() {
   const [planet2, setPlanet2] = useState(null)
   const [distance, setDistance] = useState(null)
   const [error, setError] = useState('')
+  const [showHelp, setShowHelp] = useState(false)
 
   const handleCompare = () => {
     if (!planet1 || !planet2) {
@@ -32,6 +34,10 @@ function App() {
         <div className="header-content">
           <h1>Planet Distance Comparison</h1>
           <p className="subtitle">Explore the vast distances between celestial bodies in our solar system</p>
+          <button className="help-button" onClick={() => setShowHelp(true)}>
+            <span className="help-icon">?</span>
+            Help & Documentation
+          </button>
         </div>
       </header>
 
@@ -80,6 +86,8 @@ function App() {
           </div>
         </section> */}
       </main>
+
+      {showHelp && <HelpDoc onClose={() => setShowHelp(false)} />}
 
       <footer className="app-footer">
         <p>Explore the distances between planets and learn about our cosmic neighborhood</p>
